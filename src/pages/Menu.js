@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 // Resim dosyalarını import et
 import klasik from "../assets/klasik-burger.jpg";
@@ -38,6 +39,7 @@ const imageMap = {
 
 function Menu() {
   const [menuItems, setMenuItems] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Veritabanından menü verilerini çekmek için API isteği yap
@@ -51,9 +53,18 @@ function Menu() {
   }, []);
 
   const handleButtonClick = (menuItem) => {
-    // Butona tıklandığında yapılacak işlemler
-    console.log(`Selected item: ${menuItem.name}`);
-    // Buraya istediğiniz işlemleri ekleyebilirsiniz
+    // Ürünü sepete ekle ve sepet sayfasına yönlendir
+    axios.post('http://localhost:3300/cart', {
+      name: menuItem.name,
+      image: menuItem.image,
+      price: menuItem.price
+    })
+    .then(() => {
+      navigate('/cart');
+    })
+    .catch(error => {
+      console.error('Error adding item to cart', error);
+    });
   };
 
   return (
