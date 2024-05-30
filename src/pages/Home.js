@@ -7,9 +7,6 @@ function Home() {
       <div className='headerContainer'>
         <h1>BAGBURGER</h1>
         <p>Bambaşka Bir Lezzet <br/> Özel BAG Baharatları ile Harmanlandı</p>
-        <Link to="/menu">
-        <button>Sipariş Ver</button>
-        </Link>
       </div>
     </div>
   )
