@@ -29,8 +29,8 @@ client.connect()
   });
 
       // API endpoint
-      app.get('/users', (req, res) => {
-        client.query('SELECT * FROM "Users"', (err, result) => {
+      app.get('/menu', (req, res) => {
+        client.query('SELECT * FROM "Menu"', (err, result) => {
           if (!err) {
             res.send(result.rows);
           } else {
